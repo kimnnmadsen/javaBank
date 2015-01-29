@@ -114,7 +114,7 @@ public class Bank {
         for (Konto f: bankKonti){
             if (f.getkontoNummer() == FromID) {
                 for (Konto t: bankKonti){
-                    if (f.getkontoNummer() == ToID){
+                    if (t.getkontoNummer() == ToID){
                         f.transfer(amount, t);
                     }
                     // Lav Output hvis ToID ikke fundet
@@ -123,4 +123,33 @@ public class Bank {
             }
         }
     }
+
+    /**
+     * Indsætter et beløb til et kontonummer
+     * @param amount    beløbet der skal indsættes
+     * @param ID        kontonummeret
+     */
+    public void depositID(double amount, int ID){
+        for (Konto d: bankKonti) {
+            if (d.getkontoNummer() == ID) {
+                d.deposit(amount);
+            }
+            // Lav Output hvis ID ikke fundet
+        }
+    }
+
+    /**
+     * Hæver et beløb fra et kontonummer
+     * @param amount
+     * @param ID
+     */
+    public void withdrawID(double amount, int ID){
+        for (Konto w: bankKonti) {
+            if (w.getkontoNummer() == ID) {
+                w.withdraw(amount);
+            }
+            //Lav Output hvis ID ikke fundet
+        }
+    }
+
 }

@@ -14,8 +14,12 @@ public class Main {
         MCT.printAntalkunder();
         MCT.printbankKunder();
         MCT.printAntalkonti();
+        MCT.depositID(100,2);
+        MCT.transferFromIDtoID(50,2,3);
+        MCT.withdrawID(25,3);
         MCT.printbankKonti();
         MCT.printKunde(1);
+
 
         //Konto Kim = new Konto(1);
         //Kim.deposit(-1000);

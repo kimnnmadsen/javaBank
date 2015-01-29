@@ -6,7 +6,7 @@ public class Kunde {
     private int kundeNummer;
     private String forNavn;
     private String efterNavn;
-     ArrayList<Konto> kundeKonti;
+    public ArrayList<Konto> kundeKonti;
 
     /**Opret nyt kunde Objekt med en liste over Konti
      *
@@ -36,11 +36,5 @@ public class Kunde {
     }
     public String getefterNavn(){
         return efterNavn;
-    }
-
-    public void getkundeKonti(){
-        for (Konto k : kundeKonti){
-            System.out.println("Kontonummer: "+k.getkontoNummer()+" Saldo: "+k.getSaldo());
-        }
     }
 }
