@@ -117,10 +117,8 @@ public class Bank {
                 System.out.println("Kundenummer: " + k.getkundeNummer() + " Navn: " + k.getforNavn() + " " + k.getefterNavn());
                 for (Konto kk : k.kundeKonti){
                     System.out.println("Kontonummer: "+kk.getkontoNummer()+" Type: "+ kk.getkontoType()+" Saldo: "+kk.getSaldo());
-
                 }
-
-
+                
             }
         // Lav Output hvis ikke fundet
         }
@@ -175,9 +173,33 @@ public class Bank {
     }
     public void giveintrestAll(){
         for (Konto k: bankKonti) {
-            System.out.println(k);
             k.giveIntrest();
         }
     }
+    
+    /**
+     * Giver renter til et specifikt kontonummer
+     * @param ID    Kontonummer
+     */
+    public void giveintrestkontoID(int kontoID){
+        for (Konto k: bankKonti) {
+            if (k.getkontoNummer() == kontoID){
+                k.giveIntrest();
+            }
+        }
+    }
 
+    /**
+     * Giver renter til et specifikt kundes Konti
+     * @param ID    kundenummer
+     */
+    public void giveintrestkundeID(int kundeID){
+        for (Kunde k: bankKunder) {
+            if (k.getkundeNummer() == kundeID){
+                for (Konto kk: k.kundeKonti)
+                kk.giveIntrest();    
+            }
+        }
+    }
+    
 }
