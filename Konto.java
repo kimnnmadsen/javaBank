@@ -1,8 +1,9 @@
 package com.company;
 
-public class Konto {
+public abstract class Konto {
     private int kontoNummer;
     private double balance;
+    private String kontoType;
 
 
     /**
@@ -23,7 +24,7 @@ public class Konto {
         }
         else {
         balance += amount;
-        System.out.println(amount+" er indsat på Konto nummer: "+kontoNummer);
+        System.out.println(amount+" er indsat på Kontonummer: "+kontoNummer);
         }
     }
 
@@ -56,7 +57,7 @@ public class Konto {
         if (amount <= balance) {
             modtagerKonto.deposit(amount);
             balance -= amount;
-            System.out.println(amount +" Overført fra Kontonummer "+kontoNummer+" til Kontonummer "+modtagerKonto.kontoNummer);
+            System.out.println(amount +" Overført fra Kontonummer: "+kontoNummer+" til Kontonummer "+modtagerKonto.kontoNummer);
         } else {
             System.out.println("Konto beholdning for lav.");
             System.out.println("Du har forsøgt at overføre "+amount);
@@ -69,5 +70,18 @@ public class Konto {
     }
     public int getkontoNummer(){
         return kontoNummer;
+    }
+    public void printKontoTypes(){
+        System.out.println("Følgende kontotype er tilgængelige:");
+        System.out.println("Type 1: Checking, 1% Rente");
+        System.out.println("Type 2: Budget, 0% Rente");
+        System.out.println("Type 3: Savings, 4% Rente");
+    }
+
+    protected void setkontoType(String kontoType){
+        this.kontoType = kontoType;
+    }
+    public String getkontoType(){
+        return kontoType;
     }
 }

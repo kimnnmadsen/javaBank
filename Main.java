@@ -7,16 +7,17 @@ public class Main {
 
 
         Kunde opretkunde = MCT.nyKunde("Kim", "Madsen");
-        Konto opretkonto = MCT.nyKonto(opretkunde);
-        Konto opretkonto2 = MCT.nyKonto(opretkunde);
-        MCT.nyKonto(MCT.nyKunde("Jenna","Murphy"));
+        MCT.nyKonto(opretkunde, 7);
+        MCT.nyKonto(opretkunde, 1);
+        MCT.nyKonto(opretkunde, 3);
+        MCT.nyKonto(MCT.nyKunde("Jenna","Murphy"),1);
 
         MCT.printAntalkunder();
         MCT.printbankKunder();
         MCT.printAntalkonti();
-        MCT.depositID(100,2);
-        MCT.transferFromIDtoID(50,2,3);
-        MCT.withdrawID(25,3);
+        MCT.depositID(100, 2);
+        MCT.transferFromIDtoID(50, 2, 3);
+        MCT.withdrawID(25, 3);
         MCT.printbankKonti();
         MCT.printKunde(1);
 

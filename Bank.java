@@ -6,6 +6,7 @@ public class Bank {
     private String bankNavn; // Bankens Navn
     private int nextkundeID = 1; // Kunde ID, første ID er 1
     private int nextkontoID = 1; // Konto ID, første ID er 1
+    private int kontoID;
     private ArrayList<Kunde> bankKunder; // Liste over alle Kunder i banken
     private ArrayList<Konto> bankKonti; // Liste over alle Konti i banken
 
@@ -34,15 +35,46 @@ public class Bank {
 
     /**
      * Opretter en ny konto, tilføj til listen over konti og tilknyt den til en kunde
-     * @param Kunde Kunden som kontoen skal tilknyttes
+     * @param KontoKunde Kunden som kontoen skal tilknyttes
      */
-    public Konto nyKonto(Kunde Kunde){
-        int kontoID;
+    public Konto nysimpleKonto(Kunde KontoKunde){
         kontoID = nextkontoID++;
-        Konto nyKonto = new Konto(kontoID);
+        Konto nyKonto = new CheckingKonto(kontoID);
         bankKonti.add(nyKonto);
-        Kunde.addKonto(nyKonto);
+        KontoKunde.addKonto(nyKonto);
         return nyKonto;
+    }
+
+    /**
+     * Opretter en ny konto, tilføj til listen over konti og tilknyt den til en kunde
+     * @param KontoKunde Kunden som kontoen skal tilknyttes
+     */
+    public Konto nyKonto(Kunde KontoKunde, int kontoType){
+        Konto nyKonto = nyKontoFactory(kontoType);
+        if (nyKonto == null) {
+            System.out.println("Kontoen kunne ikke oprettes!");
+        } else {
+            bankKonti.add(nyKonto);
+            KontoKunde.addKonto(nyKonto);
+        }
+        return nyKonto;
+    }
+
+    public Konto nyKontoFactory(int kontoType){
+        switch(kontoType) {
+            case 1:
+                kontoID = nextkontoID++;
+                return new CheckingKonto(kontoID);
+            case 2:
+                kontoID = nextkontoID++;
+                return new BudgetKonto(kontoID);
+            case 3:
+                kontoID = nextkontoID++;
+                return new SavingsKonto(kontoID);
+            default:
+                System.out.println("Konto typen: "+kontoType+" findes ikke.");
+                return null;
+        }
     }
 
     /**
@@ -81,7 +113,7 @@ public class Bank {
      */
     public void printbankKonti(){
         for(Konto k: bankKonti){
-            System.out.println("Kontonummer: "+k.getkontoNummer()+" Saldo: "+k.getSaldo());
+            System.out.println("Kontonummer: "+k.getkontoNummer()+" Type: "+ k.getkontoType()+" Saldo: "+k.getSaldo());
         }
     }
 
@@ -94,7 +126,7 @@ public class Bank {
             if (k.getkundeNummer() == kundeNummer) {
                 System.out.println("Kundenummer: " + k.getkundeNummer() + " Navn: " + k.getforNavn() + " " + k.getefterNavn());
                 for (Konto kk : k.kundeKonti){
-                    System.out.println("Kontonummer: "+kk.getkontoNummer()+" Saldo: "+kk.getSaldo());
+                    System.out.println("Kontonummer: "+kk.getkontoNummer()+" Type: "+ kk.getkontoType()+" Saldo: "+kk.getSaldo());
 
                 }
 
@@ -127,7 +159,7 @@ public class Bank {
     /**
      * Indsætter et beløb til et kontonummer
      * @param amount    beløbet der skal indsættes
-     * @param ID        kontonummeret
+     * @param ID        Kontonummer
      */
     public void depositID(double amount, int ID){
         for (Konto d: bankKonti) {
@@ -140,8 +172,8 @@ public class Bank {
 
     /**
      * Hæver et beløb fra et kontonummer
-     * @param amount
-     * @param ID
+     * @param amount    Beløb der skal hæves
+     * @param ID        Kontonummer
      */
     public void withdrawID(double amount, int ID){
         for (Konto w: bankKonti) {
