@@ -6,7 +6,7 @@ public class Bank {
     private String bankNavn; // Bankens Navn
     private int nextkundeID = 1; // Kunde ID, første ID er 1
     private int nextkontoID = 1; // Konto ID, første ID er 1
-    private int kontoID;
+
     private ArrayList<Kunde> bankKunder; // Liste over alle Kunder i banken
     private ArrayList<Konto> bankKonti; // Liste over alle Konti i banken
 
@@ -35,32 +35,22 @@ public class Bank {
 
     /**
      * Opretter en ny konto, tilføj til listen over konti og tilknyt den til en kunde
-     * @param KontoKunde Kunden som kontoen skal tilknyttes
+     * @param kontoKunde    Kunden som kontoen skal tilknyttes
+     * @param kontoType     Kontotypen som skal oprettes
      */
-    public Konto nysimpleKonto(Kunde KontoKunde){
-        kontoID = nextkontoID++;
-        Konto nyKonto = new CheckingKonto(kontoID);
-        bankKonti.add(nyKonto);
-        KontoKunde.addKonto(nyKonto);
-        return nyKonto;
-    }
-
-    /**
-     * Opretter en ny konto, tilføj til listen over konti og tilknyt den til en kunde
-     * @param KontoKunde Kunden som kontoen skal tilknyttes
-     */
-    public Konto nyKonto(Kunde KontoKunde, int kontoType){
+    public Konto nyKonto(Kunde kontoKunde, int kontoType){
         Konto nyKonto = nyKontoFactory(kontoType);
         if (nyKonto == null) {
             System.out.println("Kontoen kunne ikke oprettes!");
         } else {
             bankKonti.add(nyKonto);
-            KontoKunde.addKonto(nyKonto);
+            kontoKunde.addKonto(nyKonto);
         }
         return nyKonto;
     }
 
     public Konto nyKontoFactory(int kontoType){
+        int kontoID;
         switch(kontoType) {
             case 1:
                 kontoID = nextkontoID++;
@@ -119,7 +109,7 @@ public class Bank {
 
     /**
      * Skriver en specifik kunde ud til konsollen og viser kundes konti samt saldo
-     * @param kundeNummer
+     * @param kundeNummer   Kundenummer
      */
     public void printKunde(int kundeNummer){
         for(Kunde k: bankKunder){
@@ -181,6 +171,12 @@ public class Bank {
                 w.withdraw(amount);
             }
             //Lav Output hvis ID ikke fundet
+        }
+    }
+    public void giveintrestAll(){
+        for (Konto k: bankKonti) {
+            System.out.println(k);
+            k.giveIntrest();
         }
     }
 

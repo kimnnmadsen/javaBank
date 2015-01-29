@@ -4,7 +4,6 @@ package com.company;
  * Created by kim on 29-01-2015.
  */
 public class SavingsKonto extends Konto {
-    public double intrest = 0.04;
 
     /**
      * Oprettelse af ny konto
@@ -14,5 +13,6 @@ public class SavingsKonto extends Konto {
     public SavingsKonto(int kontoNummer) {
         super(kontoNummer);
         setkontoType("Savings");
+        setintrestRate(0.04);
     }
 }

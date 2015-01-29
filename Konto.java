@@ -4,7 +4,7 @@ public abstract class Konto {
     private int kontoNummer;
     private double balance;
     private String kontoType;
-
+    private double intrestRate;
 
     /**
      * Oprettelse af ny konto
@@ -78,10 +78,17 @@ public abstract class Konto {
         System.out.println("Type 3: Savings, 4% Rente");
     }
 
+
     protected void setkontoType(String kontoType){
         this.kontoType = kontoType;
     }
     public String getkontoType(){
         return kontoType;
     }
+    protected void setintrestRate(double intrestRate){ this.intrestRate = intrestRate; }
+    public double getintrestRate(){ return intrestRate; }
+    public void giveIntrest(){
+        balance += balance*intrestRate;
+    }
+
 }

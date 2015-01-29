@@ -20,7 +20,8 @@ public class Main {
         MCT.withdrawID(25, 3);
         MCT.printbankKonti();
         MCT.printKunde(1);
-
+        MCT.giveintrestAll();
+        MCT.printbankKonti();
 
         //Konto Kim = new Konto(1);
         //Kim.deposit(-1000);
