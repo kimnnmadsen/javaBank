@@ -15,13 +15,17 @@ public class Main {
         MCT.printAntalkunder();
         MCT.printbankKunder();
         MCT.printAntalkonti();
-        MCT.depositID(100,1);
+        MCT.depositID(100, 1);
         MCT.depositID(250,2);
         MCT.transferFromIDtoID(50, 2, 3);
         MCT.withdrawID(25, 3);
         MCT.printbankKonti();
         MCT.printKunde(1);
         MCT.giveintrestkundeID(1);
+
+        for( int i = 0; i < 25; i++ ) {
+            System.out.println("");
+        }
         MCT.printbankKonti();
 
 
