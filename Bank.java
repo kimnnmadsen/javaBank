@@ -103,20 +103,20 @@ public class Bank {
      */
     public void printbankKonti(){
         for(Konto k: bankKonti){
-            System.out.println("Kontonummer: "+k.getkontoNummer()+" Type: "+ k.getkontoType()+" Saldo: "+k.getSaldo());
+            System.out.println("Kontonummer: "+k.getkontoNummer()+" Type: "+ k.getkontoType()+" Rente: "+ k.getintrestRate()+" Saldo: "+k.getSaldo());
         }
     }
 
     /**
      * Skriver en specifik kunde ud til konsollen og viser kundes konti samt saldo
-     * @param kundeNummer   Kundenummer
+     * @param kundeID   Kundenummer
      */
-    public void printKunde(int kundeNummer){
+    public void printKunde(int kundeID){
         for(Kunde k: bankKunder){
-            if (k.getkundeNummer() == kundeNummer) {
+            if (k.getkundeNummer() == kundeID) {
                 System.out.println("Kundenummer: " + k.getkundeNummer() + " Navn: " + k.getforNavn() + " " + k.getefterNavn());
                 for (Konto kk : k.kundeKonti){
-                    System.out.println("Kontonummer: "+kk.getkontoNummer()+" Type: "+ kk.getkontoType()+" Saldo: "+kk.getSaldo());
+                    System.out.println("Kontonummer: "+kk.getkontoNummer()+" Type: "+ kk.getkontoType()+" Rente: "+ kk.getintrestRate()+" Saldo: "+kk.getSaldo());
                 }
                 
             }
@@ -147,11 +147,11 @@ public class Bank {
     /**
      * Indsætter et beløb til et kontonummer
      * @param amount    beløbet der skal indsættes
-     * @param ID        Kontonummer
+     * @param kontoID        Kontonummer
      */
-    public void depositID(double amount, int ID){
+    public void depositID(double amount, int kontoID){
         for (Konto d: bankKonti) {
-            if (d.getkontoNummer() == ID) {
+            if (d.getkontoNummer() == kontoID) {
                 d.deposit(amount);
             }
             // Lav Output hvis ID ikke fundet
@@ -161,16 +161,20 @@ public class Bank {
     /**
      * Hæver et beløb fra et kontonummer
      * @param amount    Beløb der skal hæves
-     * @param ID        Kontonummer
+     * @param kontoID        Kontonummer
      */
-    public void withdrawID(double amount, int ID){
+    public void withdrawID(double amount, int kontoID){
         for (Konto w: bankKonti) {
-            if (w.getkontoNummer() == ID) {
+            if (w.getkontoNummer() == kontoID) {
                 w.withdraw(amount);
             }
             //Lav Output hvis ID ikke fundet
         }
     }
+
+    /**
+     * Giver renter til alle konti i banken
+     */
     public void giveintrestAll(){
         for (Konto k: bankKonti) {
             k.giveIntrest();
@@ -179,7 +183,7 @@ public class Bank {
     
     /**
      * Giver renter til et specifikt kontonummer
-     * @param ID    Kontonummer
+     * @param kontoID    Kontonummer
      */
     public void giveintrestkontoID(int kontoID){
         for (Konto k: bankKonti) {
@@ -191,7 +195,7 @@ public class Bank {
 
     /**
      * Giver renter til et specifikt kundes Konti
-     * @param ID    kundenummer
+     * @param kundeID    kundenummer
      */
     public void giveintrestkundeID(int kundeID){
         for (Kunde k: bankKunder) {

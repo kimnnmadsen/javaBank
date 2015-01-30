@@ -86,7 +86,9 @@ public abstract class Konto {
         return kontoType;
     }
     protected void setintrestRate(double intrestRate){ this.intrestRate = intrestRate; }
-    public double getintrestRate(){ return intrestRate; }
+    public double getintrestRate(){
+        return intrestRate;
+    }
     public void giveIntrest(){
         balance += balance*intrestRate;
     }

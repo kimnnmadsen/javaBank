@@ -3,15 +3,20 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-	    Bank MCT = new Bank("Mercantec");
 
+	    // init en ny Bank kaldet Mercantec med Object ref MCT
+        Bank MCT = new Bank("Mercantec");
 
-        Kunde opretkunde = MCT.nyKunde("Kim", "Madsen");
-        MCT.nyKonto(opretkunde, 7);
-        MCT.nyKonto(opretkunde, 1);
-        MCT.nyKonto(opretkunde, 3);
+        // Opret 2 kunder: Kim med en Checking Konto og Savings samt Jenna med en Checking Konto
+        Kunde opretKim = MCT.nyKunde("Kim", "Madsen");
+        MCT.nyKonto(opretKim, 1);
+        MCT.nyKonto(opretKim, 3);
         MCT.nyKonto(MCT.nyKunde("Jenna","Murphy"),1);
 
+        System.out.println("Velkommen til banken "+MCT.getBankNavn());
+        Menu.bankMenu(MCT);
+
+/**
         MCT.printAntalkunder();
         MCT.printbankKunder();
         MCT.printAntalkonti();
@@ -23,20 +28,8 @@ public class Main {
         MCT.printKunde(1);
         MCT.giveintrestkundeID(1);
 
-        for( int i = 0; i < 25; i++ ) {
-            System.out.println("");
-        }
+
         MCT.printbankKonti();
-
-
-        //Konto Kim = new Konto(1);
-        //Kim.deposit(-1000);
-        //Konto Jenna = new Konto(2);
-        //Jenna.deposit(200);
-
-        //Kim.transfer(1100,Jenna);
-
-        //Kim.printSaldo();
-        //Jenna.printSaldo();
+*/
     }
 }
